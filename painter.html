@@ -24,6 +24,7 @@
     <script>
         good = 0
         oops = 0
+        count = 0;
         function checkPainter() {
             console.log("Getting form values")
             password = document.getElementById("form1_pd").value
@@ -38,6 +39,12 @@
                 oops++
                 out.innerHTML = "Correct guess: " + good + " Wrong guess: " + oops;
                 alert("Sorry")
+                count=count+1;
+            }
+            if (count > 10) {
+                alert("Sorry, ran out of guesses.");
+
+                document.getElementById('togglee').style.visibility = 'hidden';
             }
         }
     </script>
