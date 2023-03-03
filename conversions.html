@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+<head>
+    <title>Conversions</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Painter entry by Keerthi Sannapareddy</h2><br>
+        <form>
+            <div class="form-group">
+                <label for="form-base-amount">Enter base amount </label>
+                <input type="number" id="form-base-amount" name="form-base-amount" value=50>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="form-conversion-rate">Enter the conversion rate</label>
+                <input type="number" id="form-conversion-rate" name="form-conversion-rate" value=35> <br>
+            </div>
+            <br>
+            <div>
+                <button type="button" id="convert-btn">Show conversions</button>
+            </div>
+        </form>
+
+
+
+        <p id="result">value is converted value : </p>
+
+    </div>
+    <script>
+        const baseAmountInput = document.getElementById("form-base-amount")
+        const rateInput = document.getElementById("form-conversion-rate")
+        const convertBtn = document.getElementById("convert-btn")
+        const resultElement = document.getElementById("result")
+
+        function calculateConversion(baseAmount, rate) {
+            return baseAmount * rate
+        }
+
+        function showConversions() {
+            const baseAmount = parseFloat(baseAmountInput.value)
+            const rate = parseFloat(rateInput.value)
+            let toShow = ""
+
+            for (let i = 1; i <= 5; i++) {
+                const amount = baseAmount * Math.pow(2, i - 1)
+                const conversion = calculateConversion(amount, rate)
+                toShow += `${amount} is ${conversion}; `
+            }
+
+            if (toShow) {
+                resultElement.textContent = `Conversions are: ${toShow}`
+            }
+        }
+
+        convertBtn.addEventListener("click", showConversions)
+    </script>
+
+    <div class="container">
+        <form>
+            <div class="form-group"><label>
+                    <input type="radio" name="operation" value="avg" onClick="chooseOp()"> Average
+                </label></div>
+            <div class="form-group"><label>
+                    <input type="radio" name="operation" value="max" onClick="chooseOp()"> Max
+                </label></div>
+            <div class="form-group"><label>
+                    <input type="radio" name="operation" value="min" onClick="chooseOp()"> Min
+                </label></div>
+
+        </form>
+
+        <p id="res">The result for the radio buttons will be diplayed here :</p>
+
+    </div>
+
+    <script>
+        function chooseOp() {
+            const base_amt = parseFloat(document.getElementById("form-base-amount").value);
+            const conversion_rate = parseFloat(document.getElementById("form-conversion-rate").value);
+            const operation = document.querySelector('input[name="operation"]:checked').value;
+
+            out = document.getElementById("res")
+            let res;
+            switch (operation) {
+                case "avg":
+                    res = (base_amt + conversion_rate) / 2
+                    out.innerHTML = "Average of " + base_amt + " and " + conversion_rate + " is " + res
+                    break;
+                case "max":
+                    if (base_amt > conversion_rate)
+                        res = base_amt
+                    else
+                        res = conversion_rate
+
+                    out.innerHTML = "Max of " + base_amt + " and " + conversion_rate + " is " + res
+                    break;
+                case "min":
+                    if (base_amt < conversion_rate)
+                        res = base_amt
+                    else
+                        res = conversion_rate
+
+                    out.innerHTML = "Min of " + base_amt + " and " + conversion_rate + " is " + res
+                    break;
+                default:
+                    res = "";
+            }
+
+            document.getElementById("res").innerHTML = `${operation} of ${base_amt} and ${conversion_rate} is ${res}`;
+        }
+    </script>
+
+</body>
+
+</html>

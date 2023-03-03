@@ -42,6 +42,31 @@
         }
     </script>
 
+    <div class="container">
+        <img id="picture" src="Sago Palm.jpg" height="100" weight="100" onclick="selectImage()">
+    </div>
+    <script>
+        var imgCounter = 1
+        var img = document.getElementById("picture")
+        function selectImage() {
+            switch (imgCounter) {
+                case 1:
+                    img.src = "Air Plant.jpg"
+                    imgCounter++
+                    break
+                case 2:
+                    img.src = "Natal Plum.jpg"
+                    imgCounter++
+                    break
+                case 3:
+                    img.src = "Sago Palm.jpg"
+                    imgCounter = 1
+                    break
+                default:
+            }
+        }
+    </script>
+
 </body>
 
 </html>
